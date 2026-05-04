@@ -1,0 +1,41 @@
+baseURL = 'https://mlnetwork.dev/'
+languageCode = 'en-us'
+title = 'MLNetwork'
+theme = 'github.com/adityatelange/hugo-PaperMod'
+
+[params]
+  description = 'Premium fibre optic solutions — design, installation, testing, and training across Africa.'
+  author = 'MLNetwork'
+  displayMode = 'light'
+
+[params.homeInfoParams]
+  Title = 'Welcome to MLNetwork'
+  Content = 'The complete fibre optic solution. Comprehensive solutions for all industries where fibre optics plays a role.'
+
+[[params.socialIcons]]
+  name = 'linkedin'
+  url = 'https://linkedin.com/'
+
+[[params.socialIcons]]
+  name = 'youtube'
+  url = 'https://youtube.com/'
+
+[menu]
+  [[menu.main]]
+    identifier = 'about'
+    name = 'About'
+    url = '/about/'
+    weight = 10
+  [[menu.main]]
+    identifier = 'services'
+    name = 'Services'
+    url = '/services/'
+    weight = 20
+  [[menu.main]]
+    identifier = 'contact'
+    name = 'Contact'
+    url = '/contact/'
+    weight = 30
+
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']

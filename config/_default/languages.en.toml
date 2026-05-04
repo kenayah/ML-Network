@@ -1,0 +1,28 @@
+disabled = false
+locale = "en"
+label = "English"
+weight = 1
+title = "ML Network"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  logo = "img/logo.jpg"
+  # secondaryLogo = "img/secondary-logo.png"
+  description = "Your Fibre Optical Solutions Partner"
+  # copyright = "Copy, _right?_ :thinking_face:"
+
+[params.author]
+  name = "MLNetwork"
+  email = "mongly06@gmail.com"
+  # image = "img/blowfish_logo.png"
+  # imageQuality = 96
+  headline = "The Complete Fibre Optic Solution"
+  bio = "Since 1997, MLNetwork has been the trusted force behind cutting-edge fibre solutions across South Africa and Africa."
+  links = [
+    { email = "mongly06@gmail.com" },
+    { linkedin = "https://linkedin.com/" },
+    { youtube = "https://youtube.com/" },
+  ]
