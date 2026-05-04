@@ -2,7 +2,7 @@ disabled = false
 locale = "en"
 label = "English"
 weight = 1
-title = "ML Network"
+title = "MLNetwork"
 
 [params]
   displayName = "EN"
@@ -11,8 +11,8 @@ title = "ML Network"
   dateFormat = "2 January 2006"
   logo = "img/logo.jpg"
   # secondaryLogo = "img/secondary-logo.png"
-  description = "Your Fibre Optical Solutions Partner"
-  # copyright = "Copy, _right?_ :thinking_face:"
+  description = "The Complete Fibre Optic Solution — design, installation, testing, and training across Africa since 1997."
+  copyright = "© {year} MLNetwork. All rights reserved."
 
 [params.author]
   name = "MLNetwork"

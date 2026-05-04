@@ -2,7 +2,7 @@
 title: "Our Services"
 date: 2026-05-01T00:00:00+02:00
 draft: false
-description: "Specialized fibre optic solutions — design, installation, testing, training, and equipment supply."
+description: "Specialized fibre optic solutions — design, installation, testing, training, and equipment supply across Africa."
 ---
 
 With extensive expertise and experience, we provide tailored fibre solutions across multiple industries, ensuring reliable and high-performance network infrastructure where fibre is essential.

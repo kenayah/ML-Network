@@ -1,6 +1,6 @@
 ---
 title: "MLNetwork"
-description: "The Complete Fibre Optic Solution"
+description: "The Complete Fibre Optic Solution — design, installation, testing, and training across Africa since 1997."
 ---
 
 **The Complete Fibre Optic Solution**

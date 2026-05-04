@@ -2,8 +2,7 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/getting-started/
 
-theme = "blowfish" 
-# baseURL = "https://your_domain.com/"
+theme = "blowfish"
 baseURL = "https://kenayah.github.io/ML-Network/"
 defaultContentLanguage = "en"
 
@@ -17,7 +16,7 @@ buildFuture = false
 
 enableEmoji = true
 
-# googleAnalytics = "G-XXXXXXXXX"
+# googleAnalytics = "G-XXXXXXXXX"
 
 [pagination]
   pagerSize = 100
