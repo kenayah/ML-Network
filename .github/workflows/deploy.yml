@@ -27,9 +27,11 @@ jobs:
 
       - name: Install Hugo
         run: |
-          mkdir -p $HOME/hugo
-          curl -sL "https://github.com/gohugoio/hugo/releases/download/v0.161.1/hugo_extended_0.161.1_linux-amd64.tar.gz" | tar -xz -C $HOME/hugo
-          echo "$HOME/hugo" >> $GITHUB_PATH
+          curl -sL "https://github.com/gohugoio/hugo/releases/download/v0.161.1/hugo_extended_0.161.1_linux-amd64.tar.gz" -o /tmp/hugo.tar.gz
+          mkdir -p $HOME/hugo/bin
+          tar -xzf /tmp/hugo.tar.gz -C $HOME/hugo/bin --strip-components=1
+          ls -la $HOME/hugo/bin/
+          echo "$HOME/hugo/bin" >> $GITHUB_PATH
           hugo version
 
       - name: Setup Pages
