@@ -18,7 +18,7 @@
   <div class="max-w-3xl mx-auto text-center">
     <img
       class="mx-auto mb-2 w-[250px] h-auto"
-      src="/img/logo.jpg"
+      src="{{ "/img/logo.jpg" | relURL }}"
       alt="{{ .Site.Params.Author.name | default `MLNetwork` }}">
 
     <h1 class="mb-4 text-5xl font-extrabold text-neutral-800 dark:text-neutral-100">
