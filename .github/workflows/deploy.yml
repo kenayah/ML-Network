@@ -22,8 +22,6 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      HUGO_VERSION: 0.160.0
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,9 +30,8 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: gohugoio/setup-hugo@v1
         with:
-          hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
       - name: Setup Pages
@@ -46,10 +43,7 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
-          hugo \
-            --gc \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
