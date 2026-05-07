@@ -12,7 +12,7 @@ title = "MLNetwork"
   logo = "img/logo.jpg"
   # secondaryLogo = "img/secondary-logo.png"
   description = "The Complete Fibre Optic Solution — design, installation, testing, and training across Africa since 1997."
-  copyright = "© {year} MLNetwork. All rights reserved."
+  copyright = "© { year } MLNetwork. All rights reserved."
 
 [params.author]
   name = "MLNetwork"
