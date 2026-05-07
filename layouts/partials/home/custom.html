@@ -12,17 +12,7 @@
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, #0a192f 0%, #112240 50%, #1a365d 100%);
-}
-.dark .hero-gradient {
-  background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);
-}
-
-.parallax-bg {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: linear-gradient(135deg, rgba(10, 25, 47, 0.85) 0%, rgba(17, 34, 64, 0.85) 50%, rgba(26, 54, 93, 0.85) 100%);
 }
 
 .stats-card {
@@ -61,15 +51,26 @@
   opacity: 1;
 }
 
-.cta-gradient {
-  background: linear-gradient(90deg, #1e88e5 0%, #1565c0 50%, #0d47a1 100%);
-}
-.dark .cta-gradient {
-  background: linear-gradient(90deg, #0d47a1 0%, #1565c0 50%, #1e88e5 100%);
-}
-
 .leader-image {
   background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+}
+
+.parallax-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.dark .parallax-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%);
 }
 
 @keyframes fadeInUp {
@@ -92,11 +93,6 @@
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 
-.parallax-section {
-  will-change: transform;
-  transition: transform 0.1s linear;
-}
-
 .scroll-reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -114,51 +110,41 @@
 .scroll-reveal-delay-4 { transition-delay: 0.4s; }
 .scroll-reveal-delay-5 { transition-delay: 0.5s; }
 
-.parallax-image {
-  transition: transform 0.1s linear;
-  will-change: transform;
-}
-
 .hero-content {
   transform: translateY(0);
-  transition: transform 0.1s linear;
-  will-change: transform;
+  transition: transform 0.1s linear, opacity 0.1s linear;
+  will-change: transform, opacity;
 }
 
-section:nth-child(odd) {
-  background-image: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-}
-
-.dark section:nth-child(odd) {
-  background-image: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
-}
-
-section:nth-child(even) {
-  background-image: radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
-}
-
-.dark section:nth-child(even) {
-  background-image: radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
+section {
+  position: relative;
 }
 </style>
 
 <div id="particles-js" class="fixed inset-0 -z-10"></div>
 
-<section class="relative hero-gradient min-h-screen flex items-center justify-center px-4 py-20 parallax-section" data-parallax-speed="0.5">
-  <div class="max-w-5xl mx-auto text-center hero-content">
+<section class="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden"
+  style="background: url('{{ "img/placeholders/hero-bg.svg" | relURL }}') center/cover no-repeat;">
+  <div class="absolute inset-0 hero-gradient"></div>
+  <div class="absolute inset-0 opacity-30">
+    <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.3) 0%, transparent 50%);"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(circle at 70% 60%, rgba(16, 185, 129, 0.2) 0%, transparent 50%);"></div>
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto text-center hero-content">
     <div class="animate-fade-in-up">
       <img
-        class="mx-auto mb-6 w-[125px] h-auto rounded-lg shadow-xl"
+        class="mx-auto mb-6 w-[125px] h-auto rounded-lg shadow-2xl border-2 border-white/20"
         src="{{ "img/logo.jpg" | relURL }}"
         alt="{{ .Site.Params.Author.name | default `MLNetwork` }}">
     </div>
 
-    <h1 class="animate-fade-in-up delay-100 mb-4 text-5xl md:text-6xl font-extrabold text-white tracking-tight">
+    <h1 class="animate-fade-in-up delay-100 mb-4 text-5xl md:text-7xl font-extrabold text-white tracking-tight drop-shadow-lg">
       {{ .Site.Params.Author.name | default .Site.Title }}
     </h1>
 
     {{ with .Site.Params.Author.headline }}
-    <p class="animate-fade-in-up delay-200 mb-8 text-xl md:text-2xl text-blue-200 font-light">
+    <p class="animate-fade-in-up delay-200 mb-8 text-xl md:text-3xl text-blue-200 font-light drop-shadow">
       {{ . | markdownify }}
     </p>
     {{ end }}
@@ -169,7 +155,7 @@ section:nth-child(even) {
       {{ range $name, $url := $links }}
       {{ $isEmail := eq $name "email" }}
       <a
-        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40"
+        class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/25 transition-all duration-300 border border-white/30 hover:border-white/60 hover:scale-110"
         href="{{ cond $isEmail "#" ($url | safeURL) }}"
         {{ if $isEmail }}
           data-email="{{ $url | base64Encode }}"
@@ -186,7 +172,7 @@ section:nth-child(even) {
     </div>
     {{ end }}
 
-    <div class="animate-fade-in-up delay-400 prose prose-invert mx-auto max-w-2xl text-neutral-300">
+    <div class="animate-fade-in-up delay-400 prose prose-lg prose-invert mx-auto max-w-2xl text-neutral-200">
       {{ .Content }}
     </div>
 
@@ -194,9 +180,9 @@ section:nth-child(even) {
       {{ range .Site.Menus.main }}
       <a
         href="{{ .URL | relLangURL }}"
-        class="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/25 hover:shadow-xl">
+        class="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-4 font-semibold text-white shadow-xl transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/40 hover:shadow-2xl hover:scale-105">
         {{ .Name }}
-        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
       </a>
@@ -204,8 +190,8 @@ section:nth-child(even) {
     </div>
   </div>
 
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
+    <svg class="w-8 h-8 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
     </svg>
   </div>
@@ -214,38 +200,40 @@ section:nth-child(even) {
 <section class="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900 scroll-reveal" data-scroll-reveal>
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-      <div class="stats-card bg-white dark:bg-neutral-800 rounded-2xl p-6 md:p-8 text-center shadow-sm scroll-reveal scroll-reveal-delay-1" data-scroll-reveal>
+      <div class="stats-card bg-white dark:bg-neutral-800 rounded-2xl p-6 md:p-8 text-center shadow-lg border border-neutral-100 dark:border-neutral-700 scroll-reveal scroll-reveal-delay-1" data-scroll-reveal>
         <div class="text-4xl md:text-5xl font-extrabold text-blue-600 dark:text-blue-400 mb-2">25+</div>
-        <div class="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-medium">Years Experience</div>
+        <div class="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-medium uppercase tracking-wide">Years Experience</div>
       </div>
-      <div class="stats-card bg-white dark:bg-neutral-800 rounded-2xl p-6 md:p-8 text-center shadow-sm scroll-reveal scroll-reveal-delay-2" data-scroll-reveal>
+      <div class="stats-card bg-white dark:bg-neutral-800 rounded-2xl p-6 md:p-8 text-center shadow-lg border border-neutral-100 dark:border-neutral-700 scroll-reveal scroll-reveal-delay-2" data-scroll-reveal>
         <div class="text-4xl md:text-5xl font-extrabold text-green-600 dark:text-green-400 mb-2">100%</div>
-        <div class="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-medium">Workmanship Guarantee</div>
+        <div class="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-medium uppercase tracking-wide">Workmanship Guarantee</div>
       </div>
-      <div class="stats-card bg-white dark:bg-neutral-800 rounded-2xl p-6 md:p-8 text-center shadow-sm scroll-reveal scroll-reveal-delay-3" data-scroll-reveal>
+      <div class="stats-card bg-white dark:bg-neutral-800 rounded-2xl p-6 md:p-8 text-center shadow-lg border border-neutral-100 dark:border-neutral-700 scroll-reveal scroll-reveal-delay-3" data-scroll-reveal>
         <div class="text-4xl md:text-5xl font-extrabold text-purple-600 dark:text-purple-400 mb-2">9+</div>
-        <div class="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-medium">Countries Across Africa</div>
+        <div class="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-medium uppercase tracking-wide">Countries Across Africa</div>
       </div>
-      <div class="stats-card bg-white dark:bg-neutral-800 rounded-2xl p-6 md:p-8 text-center shadow-sm scroll-reveal scroll-reveal-delay-4" data-scroll-reveal>
+      <div class="stats-card bg-white dark:bg-neutral-800 rounded-2xl p-6 md:p-8 text-center shadow-lg border border-neutral-100 dark:border-neutral-700 scroll-reveal scroll-reveal-delay-4" data-scroll-reveal>
         <div class="text-4xl md:text-5xl font-extrabold text-orange-600 dark:text-orange-400 mb-2">200+</div>
-        <div class="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-medium">Satisfied Customers</div>
+        <div class="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-medium uppercase tracking-wide">Satisfied Customers</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="py-16 md:py-24 bg-white dark:bg-neutral-800" data-scroll-reveal>
-  <div class="max-w-6xl mx-auto px-4">
+<section class="parallax-section py-20 md:py-32"
+  style="background-image: url('{{ "img/placeholders/section-divider-1.svg" | relURL }}');">
+  <div class="parallax-overlay"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-4">
     <div class="text-center mb-12 md:mb-16 scroll-reveal">
-      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">What We Offer</h2>
-      <p class="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">Comprehensive fibre optic solutions tailored to your needs, from design to deployment and beyond.</p>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">What We Offer</h2>
+      <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto drop-shadow">Comprehensive fibre optic solutions tailored to your needs, from design to deployment and beyond.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="service-card bg-neutral-50 dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-sm scroll-reveal scroll-reveal-delay-1" data-scroll-reveal>
-        <div class="service-image h-48 bg-neutral-200 dark:bg-neutral-700">
+      <div class="service-card bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl scroll-reveal scroll-reveal-delay-1" data-scroll-reveal>
+        <div class="service-image h-52 bg-neutral-200 dark:bg-neutral-700">
           <img
-            class="w-full h-full object-cover parallax-image"
+            class="w-full h-full object-cover"
             src="{{ "img/placeholders/service-design.svg" | relURL }}"
             alt="Design and Consulting">
         </div>
@@ -280,10 +268,10 @@ section:nth-child(even) {
         </div>
       </div>
 
-      <div class="service-card bg-neutral-50 dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-sm scroll-reveal scroll-reveal-delay-2" data-scroll-reveal>
-        <div class="service-image h-48 bg-neutral-200 dark:bg-neutral-700">
+      <div class="service-card bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl scroll-reveal scroll-reveal-delay-2" data-scroll-reveal>
+        <div class="service-image h-52 bg-neutral-200 dark:bg-neutral-700">
           <img
-            class="w-full h-full object-cover parallax-image"
+            class="w-full h-full object-cover"
             src="{{ "img/placeholders/service-network.svg" | relURL }}"
             alt="Network Services">
         </div>
@@ -324,10 +312,10 @@ section:nth-child(even) {
         </div>
       </div>
 
-      <div class="service-card bg-neutral-50 dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-sm scroll-reveal scroll-reveal-delay-3" data-scroll-reveal>
-        <div class="service-image h-48 bg-neutral-200 dark:bg-neutral-700">
+      <div class="service-card bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl scroll-reveal scroll-reveal-delay-3" data-scroll-reveal>
+        <div class="service-image h-52 bg-neutral-200 dark:bg-neutral-700">
           <img
-            class="w-full h-full object-cover parallax-image"
+            class="w-full h-full object-cover"
             src="{{ "img/placeholders/service-training.svg" | relURL }}"
             alt="Training and Equipment">
         </div>
@@ -353,7 +341,7 @@ section:nth-child(even) {
   </div>
 </section>
 
-<section class="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900 scroll-reveal" data-scroll-reveal>
+<section class="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900" data-scroll-reveal>
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center mb-12 md:mb-16 scroll-reveal">
       <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">Trusted By Industry Leaders</h2>
@@ -362,9 +350,9 @@ section:nth-child(even) {
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
       {{ range $i := seq 1 6 }}
-      <div class="flex items-center justify-center p-4 bg-white dark:bg-neutral-800 rounded-xl shadow-sm scroll-reveal" data-scroll-reveal data-delay="{{ (mul $i 0.1) }}s">
+      <div class="flex items-center justify-center p-6 bg-white dark:bg-neutral-800 rounded-xl shadow-md hover:shadow-lg transition-shadow scroll-reveal" data-scroll-reveal>
         <img
-          class="client-logo max-h-12 w-auto"
+          class="client-logo max-h-10 w-auto"
           src="{{ (printf "img/placeholders/client-%d.svg" $i) | relURL }}"
           alt="Client {{ $i }}">
       </div>
@@ -373,29 +361,31 @@ section:nth-child(even) {
   </div>
 </section>
 
-<section class="py-16 md:py-24 bg-white dark:bg-neutral-800" data-scroll-reveal>
-  <div class="max-w-6xl mx-auto px-4">
+<section class="parallax-section py-20 md:py-32"
+  style="background-image: url('{{ "img/placeholders/section-divider-2.svg" | relURL }}');">
+  <div class="parallax-overlay"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-4">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="flex flex-col items-center md:items-start scroll-reveal scroll-reveal-delay-1" data-scroll-reveal>
-        <div class="leader-image w-48 h-48 rounded-full overflow-hidden mb-8 shadow-lg parallax-image">
+        <div class="leader-image w-56 h-56 rounded-full overflow-hidden mb-8 shadow-2xl border-4 border-white/20">
           <img
             class="w-full h-full object-cover"
             src="{{ "img/placeholders/leader-placeholder.svg" | relURL }}"
             alt="Mongly Lipombo - Founder & CEO">
         </div>
-        <h2 class="text-3xl font-bold text-neutral-900 dark:text-white mb-2">Mongly Lipombo</h2>
-        <p class="text-lg text-blue-600 dark:text-blue-400 font-medium mb-6">Founder & CEO</p>
-        <p class="text-neutral-600 dark:text-neutral-400 text-center md:text-left max-w-md mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow">Mongly Lipombo</h2>
+        <p class="text-lg text-blue-300 font-medium mb-6">Founder & CEO</p>
+        <p class="text-neutral-200 text-center md:text-left max-w-md mb-8 drop-shadow">
           With over 25 years of experience in the fibre optics industry, Mongly leads MLNetwork with a vision to connect Africa through innovative technology solutions.
         </p>
         <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-          <span class="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
+          <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600/30 backdrop-blur-sm text-blue-200 rounded-full text-sm font-medium border border-blue-400/30">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
             </svg>
             Certified Professional
           </span>
-          <span class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">
+          <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600/30 backdrop-blur-sm text-green-200 rounded-full text-sm font-medium border border-green-400/30">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
             </svg>
@@ -404,12 +394,12 @@ section:nth-child(even) {
         </div>
       </div>
 
-      <div class="bg-neutral-50 dark:bg-neutral-900 rounded-2xl p-8 md:p-10 shadow-sm scroll-reveal scroll-reveal-delay-2" data-scroll-reveal>
+      <div class="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-2xl scroll-reveal scroll-reveal-delay-2" data-scroll-reveal>
         <h3 class="text-2xl font-bold text-neutral-900 dark:text-white mb-6">Our Certifications</h3>
         <div class="space-y-4">
-          <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-xl scroll-reveal" data-scroll-reveal data-delay="0.1s">
-            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900/40 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+          <div class="flex items-start gap-4 p-4 bg-neutral-50 dark:bg-neutral-800 rounded-xl scroll-reveal" data-scroll-reveal data-delay="0.1s">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/40 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
             </div>
@@ -418,9 +408,9 @@ section:nth-child(even) {
               <p class="text-sm text-neutral-600 dark:text-neutral-400">Industry standard certification for professional fibre installation</p>
             </div>
           </div>
-          <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-xl scroll-reveal" data-scroll-reveal data-delay="0.2s">
-            <div class="flex-shrink-0 w-10 h-10 bg-green-100 dark:bg-green-900/40 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
+          <div class="flex items-start gap-4 p-4 bg-neutral-50 dark:bg-neutral-800 rounded-xl scroll-reveal" data-scroll-reveal data-delay="0.2s">
+            <div class="flex-shrink-0 w-12 h-12 bg-green-100 dark:bg-green-900/40 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
               </svg>
             </div>
@@ -429,9 +419,9 @@ section:nth-child(even) {
               <p class="text-sm text-neutral-600 dark:text-neutral-400">Committed to international quality standards</p>
             </div>
           </div>
-          <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-xl scroll-reveal" data-scroll-reveal data-delay="0.3s">
-            <div class="flex-shrink-0 w-10 h-10 bg-purple-100 dark:bg-purple-900/40 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+          <div class="flex items-start gap-4 p-4 bg-neutral-50 dark:bg-neutral-800 rounded-xl scroll-reveal" data-scroll-reveal data-delay="0.3s">
+            <div class="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900/40 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
             </div>
@@ -446,21 +436,23 @@ section:nth-child(even) {
   </div>
 </section>
 
-<section class="relative cta-gradient py-20 md:py-28 overflow-hidden parallax-section" data-parallax-speed="0.3" data-scroll-reveal>
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute -top-24 -left-24 w-64 h-64 rounded-full bg-white parallax-image"></div>
-    <div class="absolute -bottom-32 -right-32 w-80 h-80 rounded-full bg-white parallax-image"></div>
+<section class="parallax-section py-20 md:py-32 overflow-hidden"
+  style="background-image: url('{{ "img/placeholders/cta-bg.svg" | relURL }}');">
+  <div class="absolute inset-0 bg-gradient-to-r from-blue-700/90 via-blue-800/90 to-blue-900/90"></div>
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute -top-24 -left-24 w-64 h-64 rounded-full bg-white"></div>
+    <div class="absolute -bottom-32 -right-32 w-80 h-80 rounded-full bg-white"></div>
   </div>
 
-  <div class="relative max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 scroll-reveal">Partner With Us for Training</h2>
-    <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10 scroll-reveal scroll-reveal-delay-1">
+  <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-lg scroll-reveal">Partner With Us for Training</h2>
+    <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10 drop-shadow scroll-reveal scroll-reveal-delay-1">
       Join our training partnership program and develop the skills needed for the future of fibre optics in Africa.
     </p>
     <div class="flex flex-wrap justify-center gap-4 scroll-reveal scroll-reveal-delay-2">
       <a
         href="{{ "contact" | relLangURL }}"
-        class="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-blue-700 shadow-lg transition-all duration-300 hover:bg-blue-50 hover:shadow-xl">
+        class="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-blue-700 shadow-xl transition-all duration-300 hover:bg-blue-50 hover:shadow-2xl hover:scale-105">
         Get In Touch
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -468,7 +460,7 @@ section:nth-child(even) {
       </a>
       <a
         href="{{ "services" | relLangURL }}"
-        class="inline-flex items-center gap-2 rounded-full border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white/10">
+        class="inline-flex items-center gap-2 rounded-full border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white/20 hover:scale-105">
         View Services
       </a>
     </div>
@@ -484,34 +476,15 @@ section:nth-child(even) {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const parallaxSections = document.querySelectorAll('.parallax-section');
-  const parallaxImages = document.querySelectorAll('.parallax-image');
   const heroContent = document.querySelector('.hero-content');
 
   function handleParallax() {
     const scrollY = window.scrollY;
 
-    parallaxSections.forEach(section => {
-      const speed = parseFloat(section.dataset.parallaxSpeed) || 0.5;
-      const rect = section.getBoundingClientRect();
-      const yPos = -(scrollY * speed * 0.1);
-      section.style.transform = `translateY(${yPos}px)`;
-    });
-
-    parallaxImages.forEach(img => {
-      const rect = img.getBoundingClientRect();
-      const speed = 0.05;
-      const yPos = -(scrollY * speed * 0.1);
-      img.style.transform = `translateY(${yPos}px) scale(1.02)`;
-    });
-
     if (heroContent) {
-      const heroRect = heroContent.parentElement.getBoundingClientRect();
-      if (heroRect.bottom > 0) {
-        const scrollPercent = scrollY / window.innerHeight;
-        heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-        heroContent.style.opacity = Math.max(0, 1 - scrollPercent);
-      }
+      const scrollPercent = scrollY / window.innerHeight;
+      heroContent.style.transform = `translateY(${scrollY * 0.4}px)`;
+      heroContent.style.opacity = Math.max(0, 1 - scrollPercent * 1.2);
     }
   }
 
