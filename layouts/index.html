@@ -9,14 +9,14 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#20799b">
 <title>ML Network — The Complete Fibre Optic Solution</title>
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 </head>
 <body>
 
 <header>
   <div class="header-inner">
     <a href="#" class="header-logo">
-      <img src="/img/logo.png" alt="ML Network" style="height:36px;width:auto">
+      <img src="{{ "img/logo.png" | relURL }}" alt="ML Network" style="height:36px;width:auto">
       <span>ML Network</span>
     </a>
     <nav class="header-nav">
@@ -29,11 +29,11 @@
 
 <section class="hero parallax-hero" id="top">
   <div class="hero-bg">
-    <img src="/img/hero-bg.jpg" alt="">
+    <img src="{{ "img/hero-bg.jpg" | relURL }}" alt="">
   </div>
   <div class="hero-overlay"></div>
     <div class="hero-content scroll-reveal">
-    <img src="/img/logo.png" alt="ML Network" class="hero-logo">
+    <img src="{{ "img/logo.png" | relURL }}" alt="ML Network" class="hero-logo">
     <h1>ML<span class="accent">Network</span></h1>
     <p class="tagline">The Complete Fibre Optic Solution — design, installation, testing, and training across Africa since 1997.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
@@ -140,7 +140,7 @@
   <div class="leader-section">
     <div class="leader-grid">
       <div class="leader-profile scroll-reveal" data-delay="0">
-        <img src="/img/leader.jpg" alt="Mongly Lipombo">
+        <img src="{{ "img/leader.jpg" | relURL }}" alt="Mongly Lipombo">
         <h3>Mongly Lipombo</h3>
         <p class="role">Founder &amp; CEO</p>
         <p class="bio">With over 25 years of experience in the fibre optics industry, Mongly leads ML Network with a vision to connect Africa through innovative technology solutions. Certified Optical Network Engineer and trusted industry expert.</p>
@@ -233,6 +233,6 @@
   </div>
 </footer>
 
-<script src="/js/main.js"></script>
+<script src="{{ "js/main.js" | relURL }}"></script>
 </body>
 </html>
