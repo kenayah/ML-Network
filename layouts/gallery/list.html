@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ML Network project gallery — tools, installations, and work across Africa.">
+<meta property="og:title" content="ML Network — Gallery">
+<meta property="og:description" content="Tools, installations, and fibre optic projects across Africa.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#3b82f6">
+<title>ML Network — Gallery</title>
+<link rel="stylesheet" href="{{ "css/gallery.css" | relURL }}">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="{{ "" | relURL }}" class="header-logo">
+      <img src="{{ "img/logo.png" | relURL }}" alt="ML Network" style="height:36px;width:auto">
+      <span>ML Network</span>
+    </a>
+    <nav class="header-nav">
+      <a href="{{ "" | relURL }}">Home</a>
+      <a href="{{ "" | relURL }}#services">Services</a>
+      <a href="{{ "" | relURL }}#leadership">Leadership</a>
+      <a href="{{ "gallery/" | relURL }}" class="active">Gallery</a>
+      <a href="{{ "" | relURL }}#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="gallery-hero">
+  <div class="gallery-hero-bg">
+    <img src="{{ "img/gallery/gallery-1.jpg" | relURL }}" alt="">
+  </div>
+  <div class="gallery-hero-overlay"></div>
+  <div class="gallery-hero-content">
+    <h1>Our <span class="accent">Work</span></h1>
+    <p>Tools, installations, and fibre optic projects across Africa</p>
+  </div>
+</section>
+
+<section class="gallery-grid">
+  <div class="gallery-grid-inner">
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-1.jpg" | relURL }}" alt="Fibre optic cables" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-2.jpg" | relURL }}" alt="Project work" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-3.jpg" | relURL }}" alt="Tools and equipment" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-4.jpg" | relURL }}" alt="On-site installation" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-5.jpg" | relURL }}" alt="Fibre optic project" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-6.jpg" | relURL }}" alt="Team at work" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-7.jpg" | relURL }}" alt="Network equipment" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-8.jpg" | relURL }}" alt="Fibre tools" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="gallery-cta">
+  <a href="{{ "" | relURL }}#contact" class="btn btn-primary">Get in touch</a>
+  <a href="{{ "" | relURL }}" class="btn btn-outline">Back to home</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>ML Network</strong>
+      <span>The Complete Fibre Optic Solution</span>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 ML Network. All rights reserved. Integrity &middot; Quality &middot; Innovation
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.gallery-item img').forEach(img => {
+  img.addEventListener('click', function() {
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox';
+    overlay.innerHTML = '<div class="lightbox-bg"></div><img src="' + this.src + '" alt="' + this.alt + '"><button class="lightbox-close">&times;</button>';
+    document.body.appendChild(overlay);
+    overlay.querySelector('.lightbox-close').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--brand-primary:#3b82f6;--brand-primary-hover:#2563eb;--brand-dark:#0f172a;--brand-gray:#1e293b;--white:#fff;--font-sans:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--white);background:var(--brand-dark);line-height:1.6;overflow-x:hidden}
+
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px;height:64px}
+.header-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white)}
+.header-logo span{font-weight:700;font-size:13px;letter-spacing:.5px;text-transform:uppercase}
+.header-nav{display:flex;gap:4px}
+.header-nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;font-weight:500;padding:8px 16px;border-radius:6px;transition:all .2s}
+.header-nav a:hover,.header-nav a.active{color:var(--white);background:rgba(255,255,255,.08)}
+
+.gallery-hero{min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding-top:64px}
+.gallery-hero-bg{position:absolute;inset:0;z-index:0}
+.gallery-hero-bg img{width:100%;height:100%;object-fit:cover}
+.gallery-hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--brand-dark) 0%,rgba(15,23,42,.3) 50%,var(--brand-dark) 100%)}
+.gallery-hero-content{position:relative;z-index:2;padding:80px 24px}
+.gallery-hero-content h1{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-1.5px;margin-bottom:12px}
+.gallery-hero-content h1 .accent{color:var(--brand-primary)}
+.gallery-hero-content p{font-size:16px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase}
+
+.gallery-grid{padding:60px 24px 40px;max-width:1200px;margin:0 auto}
+.gallery-grid-inner{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.gallery-item{border-radius:12px;overflow:hidden;cursor:pointer;position:relative;aspect-ratio:4/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.gallery-item:hover img{transform:scale(1.06)}
+.gallery-item:after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .3s;pointer-events:none}
+.gallery-item:hover:after{background:rgba(59,130,246,.08)}
+
+.gallery-cta{display:flex;gap:16px;justify-content:center;padding:20px 24px 60px;flex-wrap:wrap}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+.btn-primary{background:var(--brand-primary);color:var(--white)}
+.btn-primary:hover{background:var(--brand-primary-hover);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+
+.lightbox{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;padding:40px;animation:fadeIn .2s}
+.lightbox-bg{position:absolute;inset:0;background:rgba(0,0,0,.9);z-index:0}
+.lightbox img{max-width:95vw;max-height:90vh;object-fit:contain;position:relative;z-index:1;border-radius:8px}
+.lightbox-close{position:absolute;top:20px;right:30px;z-index:2;background:none;border:none;color:#fff;font-size:40px;cursor:pointer;opacity:.7;transition:opacity .2s}
+.lightbox-close:hover{opacity:1}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);padding:48px 24px 32px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-brand{text-align:center;margin-bottom:24px}
+.footer-brand strong{color:var(--white);font-size:16px}
+.footer-brand span{display:block;color:rgba(255,255,255,.4);font-size:13px;margin-top:4px}
+.footer-bottom{text-align:center;font-size:12px;color:rgba(255,255,255,.25);padding-top:24px;border-top:1px solid rgba(255,255,255,.06)}
+
+@media(max-width:768px){
+  .header-nav{display:none}
+  .gallery-grid-inner{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+  .gallery-item{aspect-ratio:1}
+  .gallery-hero{min-height:40vh}
+}
