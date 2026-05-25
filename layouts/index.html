@@ -9,7 +9,8 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#3b82f6">
 <title>ML Network — The Complete Fibre Optic Solution</title>
-<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+{{ $styleCSS := resources.Get "css/style.css" | resources.Minify | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha512") }}
+<link rel="stylesheet" href="{{ $styleCSS.RelPermalink }}" integrity="{{ $styleCSS.Data.Integrity }}">
 </head>
 <body>
 
@@ -22,7 +23,7 @@
     <nav class="header-nav">
       <a href="#services">Services</a>
       <a href="#leadership">Leadership</a>
-      <a href="{{ "gallery/" | relURL }}">Gallery</a>
+      <a href="{{ "gallery/" | relLangURL }}">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -48,7 +49,7 @@
   <div class="sticky-nav-inner">
     <a href="#services">Services</a>
     <a href="#leadership">Leadership</a>
-    <a href="{{ "gallery/" | relURL }}">Gallery</a>
+    <a href="{{ "gallery/" | relLangURL }}">Gallery</a>
     <a href="#contact">Contact</a>
   </div>
 </div>
@@ -235,6 +236,11 @@
   </div>
 </footer>
 
-<script src="{{ "js/main.js" | relURL }}"></script>
+{{ $mainJS := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha512") }}
+<script
+  defer
+  type="text/javascript"
+  src="{{ $mainJS.RelPermalink }}"
+  integrity="{{ $mainJS.Data.Integrity }}"></script>
 </body>
 </html>
