@@ -14,20 +14,7 @@
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <a href="#" class="header-logo">
-      <img src="{{ "img/logo.png" | relURL }}" alt="ML Network" style="height:36px;width:auto">
-      <span>ML Network</span>
-    </a>
-    <nav class="header-nav">
-      <a href="#services">Services</a>
-      <a href="#leadership">Leadership</a>
-      <a href="{{ "gallery/" | relLangURL }}">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+{{ partial "header.html" . }}
 
 <section class="hero parallax-hero" id="top">
   <div class="hero-bg">
@@ -48,8 +35,9 @@
 <div class="sticky-nav">
   <div class="sticky-nav-inner">
     <a href="#services">Services</a>
+    <a href="{{ "about" | relLangURL }}">About</a>
     <a href="#leadership">Leadership</a>
-    <a href="{{ "gallery/" | relLangURL }}">Gallery</a>
+    <a href="{{ "gallery" | relLangURL }}">Gallery</a>
     <a href="#contact">Contact</a>
   </div>
 </div>
@@ -189,52 +177,7 @@
   </div>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <strong>ML Network</strong>
-      <span>The Complete Fibre Optic Solution</span>
-    </div>
-    <div class="footer-logos">
-      <span style="color:rgba(255,255,255,.3);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase">Trusted Partners</span>
-      <span style="color:rgba(255,255,255,.4);font-size:13px">EOH</span>
-      <span style="color:rgba(255,255,255,.4);font-size:13px">Eskom</span>
-      <span style="color:rgba(255,255,255,.4);font-size:13px">Microsoft</span>
-      <span style="color:rgba(255,255,255,.4);font-size:13px">Vodacom</span>
-      <span style="color:rgba(255,255,255,.4);font-size:13px">MTN</span>
-      <span style="color:rgba(255,255,255,.4);font-size:13px">Telkom</span>
-    </div>
-    <div class="footer-links">
-      <div class="footer-col">
-        <h5>Company</h5>
-        <a href="#services">Services</a>
-        <a href="#leadership">Leadership</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h5>Services</h5>
-        <a href="#services">Fibre Solutions</a>
-        <a href="#services">Network Services</a>
-        <a href="#services">Training</a>
-        <a href="#services">Equipment Supply</a>
-      </div>
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <a href="mailto:mongly06@gmail.com">mongly06@gmail.com</a>
-        <a href="tel:+27787247330">+27 78 724 7330</a>
-        <span style="display:block;color:rgba(255,255,255,.45);font-size:13px;padding:4px 0">Cape Town, South Africa</span>
-      </div>
-      <div class="footer-col">
-        <h5>Connect</h5>
-        <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
-        <a href="https://youtube.com/" target="_blank">YouTube</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2026 ML Network. All rights reserved. Integrity &middot; Quality &middot; Innovation
-    </div>
-  </div>
-</footer>
+{{ partial "footer.html" . }}
 
 {{ $mainJS := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha512") }}
 <script
