@@ -2,6 +2,7 @@
 title: "Our Services"
 date: 2026-05-01T00:00:00+02:00
 draft: false
+layout: "services"
 description: "Specialized fibre optic solutions — design, installation, testing, training, and equipment supply across Africa."
 ---
 

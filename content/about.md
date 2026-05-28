@@ -2,6 +2,7 @@
 title: "About Us"
 date: 2026-05-01T00:00:00+02:00
 draft: false
+layout: "about"
 description: "Learn about MLNetwork — your trusted fibre optical solutions partner since 1997."
 ---
 

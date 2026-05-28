@@ -15,16 +15,16 @@
 
 <header>
   <div class="header-inner">
-    <a href="{{ "" | relURL }}" class="header-logo">
+      <a href="{{ site.Home.RelPermalink }}" class="header-logo">
       <img src="{{ "img/logo.png" | relURL }}" alt="ML Network" style="height:36px;width:auto">
       <span>ML Network</span>
     </a>
     <nav class="header-nav">
-      <a href="{{ "" | relURL }}">Home</a>
-      <a href="{{ "" | relURL }}#services">Services</a>
-      <a href="{{ "" | relURL }}#leadership">Leadership</a>
-      <a href="{{ "gallery/" | relURL }}" class="active">Gallery</a>
-      <a href="{{ "" | relURL }}#contact">Contact</a>
+      <a href="{{ site.Home.RelPermalink }}">Home</a>
+      <a href="{{ "services" | relLangURL }}">Services</a>
+      <a href="{{ "about" | relLangURL }}">About</a>
+      <a href="{{ "gallery" | relLangURL }}" class="active">Gallery</a>
+      <a href="{{ "contact" | relLangURL }}">Contact</a>
     </nav>
   </div>
 </header>
@@ -66,12 +66,48 @@
     <div class="gallery-item">
       <img src="{{ "img/gallery/gallery-8.jpg" | relURL }}" alt="Fibre tools" loading="lazy">
     </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-9.png" | relURL }}" alt="Fibre optic cables" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-10.png" | relURL }}" alt="Project work" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-11.png" | relURL }}" alt="Tools and equipment" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-12.jpg" | relURL }}" alt="On-site installation" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-13.jpg" | relURL }}" alt="Fibre optic project" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-14.jpg" | relURL }}" alt="Team at work" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-15.jpg" | relURL }}" alt="Network equipment" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-16.jpg" | relURL }}" alt="On-site installation" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-17.jpg" | relURL }}" alt="Fibre tools" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-18.jpg" | relURL }}" alt="Network equipment" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-19.png" | relURL }}" alt="Fibre tools" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="{{ "img/gallery/gallery-20.jpeg" | relURL }}" alt="Network equipment" loading="lazy">
+    </div>
   </div>
 </section>
 
 <div class="gallery-cta">
-  <a href="{{ "" | relURL }}#contact" class="btn btn-primary">Get in touch</a>
-  <a href="{{ "" | relURL }}" class="btn btn-outline">Back to home</a>
+  <a href="{{ "contact" | relURL }}" class="btn btn-primary">Get in touch</a>
+  <a href="{{ site.Home.RelPermalink }}" class="btn btn-outline">Back to home</a>
 </div>
 
 <footer>

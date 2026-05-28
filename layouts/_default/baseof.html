@@ -4,30 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="{{ .Description | default .Site.Params.description }}">
-<meta property="og:title" content="{{ .Title | default .Site.Title }}">
+<meta property="og:title" content="{{ .Title }} — {{ .Site.Title }}">
 <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#3b82f6">
-<title>{{ .Title | default .Site.Title }}</title>
+<title>{{ .Title }} — {{ .Site.Title }}</title>
 {{ $styleCSS := resources.Get "css/style.css" | resources.Minify | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha512") }}
 <link rel="stylesheet" href="{{ $styleCSS.RelPermalink }}" integrity="{{ $styleCSS.Data.Integrity }}">
+{{ block "head" . }}{{ end }}
 </head>
 <body>
-
 {{ partial "header.html" . }}
-
-<main class="content-wrapper">
-  {{ block "main" . }}
-  {{ end }}
-</main>
-
+{{ block "main" . }}{{ end }}
 {{ partial "footer.html" . }}
-
-{{ $mainJS := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha512") }}
-<script
-  defer
-  type="text/javascript"
-  src="{{ $mainJS.RelPermalink }}"
-  integrity="{{ $mainJS.Data.Integrity }}"></script>
 </body>
 </html>
